@@ -1,0 +1,25 @@
+@ECHO OFF
+
+SET PATH_OF_SCRIPT=C:\Users\Adam\scripts
+
+IF "%~1"=="" (
+    ECHO No target provided
+    GOTO EOF
+)
+
+IF "%~2"=="" (
+    SET NAME=%~1
+) ELSE (
+    SET NAME=%~2
+)
+
+SET PATH_OF_START_DIRECTORY=%cd%
+SET PATH_TO_TARGET=%1
+
+CD %PATH_OF_SCRIPT%
+ECHO @ECHO OFF >> %NAME%.bat
+ECHO. >> %NAME%.bat
+ECHO %PATH_OF_START_DIRECTORY%\%PATH_TO_TARGET% %%* >> %NAME%.bat
+CD %PATH_OF_START_DIRECTORY%
+
+:EOF
